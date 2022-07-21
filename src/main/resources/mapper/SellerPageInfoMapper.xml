@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SellerPageInfoMapper">
+<resultMap type="SellerPageInfoDTO" id="ResultSellerPageInfoDTO">
+	<result column="id" property="id"/>
+	<result column="postingId" property="postingId"/>
+	<result column="itemId" property="itemId"/>
+	<result column="price" property="price"/>
+	<result column="delivery_charge" property="deliveryCharge"/>
+	<result column="site_url" property="siteUrl"/>
+	<result column="logo_url" property="logoUrl"/>
+</resultMap>
+<select id="selectAll" resultMap="ResultSellerPageInfoDTO">
+	SELECT * FROM `seller_page_info`
+</select>
+<select id="selectOne" parameterType="int" resultMap="ResultSellerPageInfoDTO">
+	SELECT * FROM `seller_page_info` WHERE `id`=#{id}
+</select>
+<select id="selectAllForPage" parameterType="hashMap" resultMap="ResultSellerPageInfoDTO">
+	SELECT * FROM `seller_page_info` LIMIT #{startNum}, #{PAGE_SIZE}
+</select>
+<select id="count" resultType="int">
+	SELECT COUNT(*) FROM `seller_page_info`
+</select>
+<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="SellerPageInfoDTO">
+	INSERT IGNORE INTO `seller_page_info` (`postingId`, `itemId`, `price`, `delivery_charge`, `site_url`, `logo_url`)
+		VALUES (#{postingId}, #{itemId}, #{price}, #{deliveryCharge}, #{siteUrl}, #{logoUrl})
+</insert>
+<update id="update" useGeneratedKeys="true" keyProperty="id" parameterType="SellerPageInfoDTO">
+	UPDATE `seller_page_info` SET `postingId`=#{postingId}, `itemId`=#{itemId}, `price`=#{price},
+		`delivery_charge`=#{deliveryCharge}, `site_url`=#{siteUrl}, `logo_url`=#{logoUrl}
+</update>
+<delete id="delete" parameterType="int">
+	DELETE FROM `seller_page_info` WHERE `id`=#{id}
+</delete>
+</mapper>

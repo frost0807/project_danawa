@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PostingMapper">
+<resultMap type="PostingDTO" id="ResultPostingDTO">
+	<result column="id" property="id"/>
+	<result column="itemId" property="itemId"/>
+	<result column="title" property="title"/>
+	<result column="content" property="content"/>
+	<result column="written_date" property="writtenDate"/>
+	<result column="post_image_path" property="postImagePath"/>
+</resultMap>	
+<select id="selectOne" parameterType="int" resultMap="ResultPostingDTO">
+	SELECT * FROM `posting` WHERE `id`=#{id}
+</select>
+<select id="selectAll" parameterType="hashMap" resultMap="ResultPostingDTO">
+	SELECT * FROM `posting` LIMIT #{startNum}, #{PAGE_SIZE}
+</select>
+<select id="count" resultType="int">
+	SELECT COUNT(*) FROM `posting`
+</select>
+<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="PostingDTO">
+	INSERT IGNORE INTO `posting`(`itemId`, `title`, `content`, `written_date`, `post_image_path`)
+	VALUES (#{itemId}, #{title}, #{content}, NOW(), #{postImagePath})
+</insert>
+<update id="update" useGeneratedKeys="true" keyProperty="id" parameterType="PostingDTO">
+	UPDATE `posting` SET 
+</update>
+<delete id="delete" parameterType="int">
+	DELETE FROM `posting` WHERE id=#{id}
+</delete>
+</mapper>

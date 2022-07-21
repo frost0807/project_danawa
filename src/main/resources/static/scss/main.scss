@@ -1,0 +1,26 @@
+$link-color: black;
+$link-decoration: none;
+$link-shade-percentage: 0%;
+$link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
+$link-hover-decoration: null;
+
+$caret-width: 0px;
+$caret-vertical-align: $caret-width * .85;
+$caret-spacing: $caret-width * .85;
+
+$utilities: (
+	"width":(
+		property: width,
+      	class: w,
+      	values: (
+		15: 15%,
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        100: 100%,
+        auto: auto
+		)
+	)
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss"

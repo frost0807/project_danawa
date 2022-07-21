@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ItemMapper">
+
+<resultMap type="ItemDTO" id="ResultItemDTO">
+	<result column="id" property="id"/>
+	<result column="name" property="name"/>
+	<result column="specification" property="specification"/>
+	<result column="image_path" property="imagePath"/>
+	<result column="categoryId" property="categoryId"/>
+</resultMap>
+
+<select id="selectOne" parameterType="int" resultMap="ResultItemDTO" >
+	SELECT * FROM `item` WHERE `id`=#{id}
+</select>
+
+<select id="selectAll" parameterType="hashMap" resultMap="ResultItemDTO">
+	SELECT * FROM `item` LIMIT #{startNum}, #{PAGE_SIZE}
+</select>
+
+<select id="count" resultType="int">
+	SELECT COUNT(*) FROM `item`
+</select>
+
+<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="ItemDTO">
+	INSERT IGNORE INTO `item` (`name`, `specification`, `image_path`, `categoryId`)
+		VALUES (#{name}, #{specification}, #{imagePath}, #{categoryId})
+</insert>
+
+<update id="update" useGeneratedKeys="true" keyProperty="id" parameterType="ItemDTO">
+	UPDATE `item` SET `name`=#{name}, `specification`=#{specification},
+		`image_path`=#{imagePath}, `categoryId`=#{categoryId} WHERE `id`=#{id}
+</update>
+
+<delete id="delete" parameterType="int">
+	DELETE FROM `item` WHERE `id`=#{id}
+</delete>
+</mapper>

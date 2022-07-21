@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BusinessUserMapper">
+	<resultMap type="BusinessUserDTO" id="NewBusinessDTO">
+		<result column="id" property="id"/>
+		<result column="corporate_number" property="corporateNumber"/>
+		<result column="userId" property="userId"/>
+		<result column="name" property="name"/>
+		<result column="nickname" property="nickname"/>
+		<result column="email" property="email"/>
+		<result column="phone" property="phone"/>
+		<result column="company" property="company"/>
+		<result column="representative" property="representative"/>
+	</resultMap>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="BusinessUserDTO">
+		INSERT IGNORE INTO `business_user_info` (`userId`, `name`, `nickname`, `email`, `phone`,
+			`company`, `representative`, `corporate_number`)
+			VALUES (#{userId}, #{name}, #{nickname}, #{email}, #{phone},
+			#{company}, #{representative}, #{corporateNumber})
+	</insert>
+	<select id="selectOne" parameterType="int" resultMap="NewBusinessDTO">
+		SELECT * FROM `business_user_info` WHERE `userId`=#{userId}
+	</select>
+</mapper>
