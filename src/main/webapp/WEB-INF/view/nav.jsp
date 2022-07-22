@@ -37,10 +37,17 @@
 							<button class="btn btn-outline-secondary"
 								onclick="location.href='/user/myPage'">마이페이지</button>
 							<c:choose>
-								<c:when test="${logIn.type eq 1}">
-									<button class="btn btn-outline-secondary"
-										data-bs-toggle="offcanvas" data-bs-target="#adminMenu">관리메뉴</button>
-								</c:when>
+									<c:when test="${logIn.type eq 1}">
+										<div class="dropdown">
+											<a class="btn btn-outline-secondary dropdown-toggle" id="adminMenu"
+											data-bs-toggle="dropdown" aria-expanded=false>관리메뉴</a>
+												<ul class="dropdown-menu" aria-labelledby="adminMenu">
+													<li><a class="dropdown-item" href="#">Action</a></li>
+													<li><a class="dropdown-item" href="#">Another action</a></li>
+													<li><a class="dropdown-item" href="#">Something else here</a></li>
+												</ul>
+										</div>
+									</c:when>
 								<c:otherwise>
 									<button class="btn btn-outline-secondary"
 										onclick="location.href='/user/signup/general'">회원 가입</button>

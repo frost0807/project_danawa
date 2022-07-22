@@ -24,13 +24,17 @@ public class ItemService {
 		return sqlSession.selectOne(NAMESPACE+".selectOne", id);
 	}
 	
-	public List<ItemDTO> selectAll(int pageNo) {
+	public List<ItemDTO> selectAllForPage(int pageNo) {
 		HashMap<String, Integer> map=new HashMap<>();
 		int startNum=(pageNo-1)*PAGE_SIZE;
 		map.put("startNum", startNum);
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		
-		return sqlSession.selectList(NAMESPACE+".selectAll", map);
+		return sqlSession.selectList(NAMESPACE+".selectAllForPage", map);
+	}
+	
+	public List<ItemDTO> selectAll() {
+		return sqlSession.selectList(NAMESPACE+".selectAll");
 	}
 	
 	public int selectLastPage() {

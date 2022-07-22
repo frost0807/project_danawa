@@ -91,7 +91,7 @@ public class UserController {
 	
 	@GetMapping("/logIn")
 	public String logIn(HttpSession session, HttpServletRequest request) {
-		session.setAttribute("page",trimReferer(request.getHeader("referer")));
+		session.setAttribute("page",logInReferer(request.getHeader("referer")));
 		
 		return "user/logIn";
 	}
@@ -237,7 +237,7 @@ public class UserController {
         return converted;
     }
 	
-	private String trimReferer(String referer) {
+	private String logInReferer(String referer) {
 		String[] temp=referer.split("/");
 		String result="";
 		

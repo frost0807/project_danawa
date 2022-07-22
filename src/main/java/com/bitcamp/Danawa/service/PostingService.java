@@ -20,13 +20,17 @@ public class PostingService {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<PostingDTO> selectAll(int pageNo){
+	public List<PostingDTO> selectAllForPage(int pageNo){
 		HashMap<String, Integer> map=new HashMap<>();
 		int startNum=(pageNo-1)*PAGE_SIZE;
 		map.put("startNum", startNum);
 		map.put("PAGE_SIZE", PAGE_SIZE);
 		
-		return sqlSession.selectList(NAMESPACE+".selectAll", map);
+		return sqlSession.selectList(NAMESPACE+".selectAllForPage", map);
+	}
+	
+	public List<PostingDTO> selectAll(){
+		return sqlSession.selectList(NAMESPACE+".selectAll");
 	}
 	
 	public int selectLastPage() {

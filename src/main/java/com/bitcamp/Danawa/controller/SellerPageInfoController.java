@@ -64,8 +64,8 @@ public class SellerPageInfoController {
 		
 		if(logIn!=null&&logIn.getType()==1) {
 			List<SellerPageInfoDTO> spList=sellerPageInfoService.selectAllForPage(pageNo);
-			if(spList==null) {
-				model.addAttribute("url", trimReferer(request.getHeader("referer")));
+			if(spList.isEmpty()) {
+				model.addAttribute("url", pageReferer(request.getHeader("referer")));
 				model.addAttribute("message", "존재하지 않는 페이지입니다.");
 				return "errorPage";
 			}
@@ -90,18 +90,13 @@ public class SellerPageInfoController {
 			return "index";
 		}
 	}
-	private String trimReferer(String referer) {
+	
+	private String pageReferer(String referer) {
 		String[] temp=referer.split("/");
 		String result="";
 		
 		for(int i=3;i<temp.length;i++) {
 			result=result+"/"+temp[i];
-		}
-		
-		if(temp.length<5) {
-			result="redirect:/index";
-		} else {
-			result="redirect:"+result;
 		}
 		
 		return result;

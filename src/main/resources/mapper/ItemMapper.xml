@@ -14,8 +14,12 @@
 	SELECT * FROM `item` WHERE `id`=#{id}
 </select>
 
-<select id="selectAll" parameterType="hashMap" resultMap="ResultItemDTO">
+<select id="selectAllForPage" parameterType="hashMap" resultMap="ResultItemDTO">
 	SELECT * FROM `item` LIMIT #{startNum}, #{PAGE_SIZE}
+</select>
+
+<select id="selectAll" resultMap="ResultItemDTO">
+	SELECT * FROM `item`
 </select>
 
 <select id="count" resultType="int">

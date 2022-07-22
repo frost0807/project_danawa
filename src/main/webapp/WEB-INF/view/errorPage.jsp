@@ -8,8 +8,8 @@
 </head>
 <body>
 <script>
-	alert(${message});
-	location.href="/returnToPage/"+${url};
+	alert('${message}');
+	location.href=`${url}`;
 </script>
 </body>
 </html>

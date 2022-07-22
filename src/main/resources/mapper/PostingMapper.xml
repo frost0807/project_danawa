@@ -12,11 +12,14 @@
 <select id="selectOne" parameterType="int" resultMap="ResultPostingDTO">
 	SELECT * FROM `posting` WHERE `id`=#{id}
 </select>
-<select id="selectAll" parameterType="hashMap" resultMap="ResultPostingDTO">
+<select id="selectAllForPage" parameterType="hashMap" resultMap="ResultPostingDTO">
 	SELECT * FROM `posting` LIMIT #{startNum}, #{PAGE_SIZE}
 </select>
 <select id="count" resultType="int">
 	SELECT COUNT(*) FROM `posting`
+</select>
+<select id="selectAll" resultMap="ResultPostingDTO">
+	SELECT * FROM `posting`
 </select>
 <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="PostingDTO">
 	INSERT IGNORE INTO `posting`(`itemId`, `title`, `content`, `written_date`, `post_image_path`)

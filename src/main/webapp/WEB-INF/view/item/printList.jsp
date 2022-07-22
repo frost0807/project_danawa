@@ -37,13 +37,13 @@
 	</div>
 	<div class="row">
 		<div class="col d-flex justify-content-center btn-toolbar btn-group-sm">
-			<a class="btn btn-primary ps-1 pe-1" href="/item/printList1">[<<]</a>
+			<a class="btn btn-primary ps-1 pe-1" href="/item/printList/1">[<<]</a>
 			<c:choose>
 				<c:when test="${currentPage<3}">
 					<c:forEach begin="1" end="5" var="pageNo">
 						<c:choose>
 							<c:when test="${pageNo ne currentPage}">
-								<a class="btn btn-outline-primary" href="/item/printList${pageNo}">${pageNo}</a>
+								<a class="btn btn-outline-primary" href="/item/printList/${pageNo}">${pageNo}</a>
 							</c:when>
 							<c:otherwise>
 								<button class="btn btn-outline-primary fw-bold"> ${pageNo}</button>
@@ -55,7 +55,7 @@
 					<c:forEach begin="${currentPage-2}" end="${currentPage+2}" var="pageNo">
 						<c:choose>
 							<c:when test="${pageNo ne currentPage}">
-								<a class="btn btn-outline-primary" href="/item/printList${pageNo}"> ${pageNo} </a>
+								<a class="btn btn-outline-primary" href="/item/printList/${pageNo}"> ${pageNo} </a>
 							</c:when>
 							<c:otherwise>
 								<button class="btn btn-outline-primary fw-bold"> ${pageNo}</button>
@@ -67,7 +67,7 @@
 					<c:forEach begin="${lastPageNo-4}" end="${lastPageNo}" var="pageNo">
 						<c:choose>
 							<c:when test="${pageNo ne currentPage}">
-								<a class="btn btn-outline-primary" href="/item/printList${pageNo}">${pageNo}</a>
+								<a class="btn btn-outline-primary" href="/item/printList/${pageNo}">${pageNo}</a>
 							</c:when>
 							<c:otherwise>
 								<button class="btn btn-outline-primary fw-bold"> ${pageNo}</button>
@@ -76,7 +76,7 @@
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
-			<a class="btn btn-primary ps-1 pe-1" href="/item/printList${lastPageNo}">[>>]</a>
+			<a class="btn btn-primary ps-1 pe-1" href="/item/printList/${lastPageNo}">[>>]</a>
 		</div>
 	</div>
 </div>

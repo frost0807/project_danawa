@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,11 +56,17 @@ public class ItemController {
 	}
 	
 	@GetMapping("/printList/{pageNo}")
-	public String printList(@PathVariable int pageNo, Model model, HttpSession session) {
+	public String printList(@PathVariable int pageNo, Model model, HttpSession session,
+			HttpServletRequest request) {
 		UserDTO logIn=(UserDTO)session.getAttribute("logIn");
 		
 		if(logIn!=null&&logIn.getType()==1) {
-			List<ItemDTO> list=itemService.selectAll(pageNo);
+			List<ItemDTO> list=itemService.selectAllForPage(pageNo);
+			if(list.isEmpty()) {
+				model.addAttribute("url", pageReferer(request.getHeader("referer")));
+				model.addAttribute("message", "존재하지 않는 페이지입니다.");
+				return "errorPage";
+			}
 			HashMap<Integer, String> categoryMap=new HashMap<>();
 			
 			for(ItemDTO i:list) {
@@ -283,6 +290,17 @@ public class ItemController {
 					+ "<input class=\"form-control form-control-sm\" type=\"text\" name=\"specValue\""
 					+ "placeholder=\"스펙 입력\"></div>"
 					+ "</div>";
+		}
+		
+		return result;
+	}
+
+	private String pageReferer(String referer) {
+		String[] temp=referer.split("/");
+		String result="";
+		
+		for(int i=3;i<temp.length;i++) {
+			result=result+"/"+temp[i];
 		}
 		
 		return result;

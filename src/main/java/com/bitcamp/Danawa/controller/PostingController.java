@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
@@ -81,11 +82,19 @@ public class PostingController {
 	}
 
 	@GetMapping("/printList/{pageNo}")
-	public String printList(@PathVariable int pageNo, Model model, HttpSession session) {
+	public String printList(@PathVariable int pageNo, Model model, HttpSession session,
+			HttpServletRequest request) {
 		UserDTO logIn = (UserDTO) session.getAttribute("logIn");
-
+		System.out.println("aa");
 		if (logIn != null && logIn.getType() == 1) {
-			List<PostingDTO> list = postingService.selectAll(pageNo);
+			List<PostingDTO> list = postingService.selectAllForPage(pageNo);
+			System.out.println(list);
+			if(list.isEmpty()) {
+				System.out.println("bb");
+				model.addAttribute("url", pageReferer(request.getHeader("referer")));
+				model.addAttribute("message", "존재하지 않는 페이지입니다.");
+				return "errorPage";
+			}
 			HashMap<Integer, String> itemNameMap = new HashMap<>();
 			HashMap<Integer, String> itemSpecMap = new HashMap<>();
 			HashMap<Integer, String> itemImageMap = new HashMap<>();
@@ -122,9 +131,8 @@ public class PostingController {
 			model.addAttribute("priceMap", priceMap);
 
 			return "posting/printList";
-		} else {
-			return "index";
-		}
+			}
+		return "index";
 	}
 	
 	@GetMapping("/insert")
@@ -201,4 +209,14 @@ public class PostingController {
 		}
 	}
 	
+	private String pageReferer(String referer) {
+		String[] temp=referer.split("/");
+		String result="";
+		
+		for(int i=3;i<temp.length;i++) {
+			result=result+"/"+temp[i];
+		}
+		
+		return result;
+	}
 }
