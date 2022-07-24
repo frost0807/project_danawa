@@ -10,6 +10,7 @@
 <body>
 <jsp:include page="../nav.jsp"/>
 <div class="container-fluid mt-5">
+	<h4 class="text-center mb-5">상품정보 삭제 페이지</h4>
 	<div class="row">
 		<form class="offset-md-4 col-md-4" action="/posting/delete" method="post">
 			<h5>정말로 삭제하시겠습니까?</h5>

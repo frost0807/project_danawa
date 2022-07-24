@@ -38,13 +38,18 @@
 								onclick="location.href='/user/myPage'">마이페이지</button>
 							<c:choose>
 									<c:when test="${logIn.type eq 1}">
-										<div class="dropdown">
+										<div class="dropdown btn-group btn-group-sm">
 											<a class="btn btn-outline-secondary dropdown-toggle" id="adminMenu"
 											data-bs-toggle="dropdown" aria-expanded=false>관리메뉴</a>
 												<ul class="dropdown-menu" aria-labelledby="adminMenu">
-													<li><a class="dropdown-item" href="#">Action</a></li>
-													<li><a class="dropdown-item" href="#">Another action</a></li>
-													<li><a class="dropdown-item" href="#">Something else here</a></li>
+													<li><a class="dropdown-item" href="/item/printList">상품정보 검색</a></li>
+													<li><a class="dropdown-item" href="/item/insert">상품정보 추가</a></li>
+													<li><hr class="dropdown-divider"></li>
+													<li><a class="dropdown-item" href="/posting/printList">상품게시물 검색</a></li>
+													<li><a class="dropdown-item" href="/posting/insert">상품게시물 추가</a></li>
+													<li><hr class="dropdown-divider"></li>
+													<li><a class="dropdown-item" href="/sellerPageInfo/printList">연결링크 검색</a></li>
+													<li><a class="dropdown-item" href="/sellerPageInfo/insert">연결링크 추가</a></li>
 												</ul>
 										</div>
 									</c:when>

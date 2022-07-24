@@ -29,6 +29,7 @@
 <update id="update" useGeneratedKeys="true" keyProperty="id" parameterType="SellerPageInfoDTO">
 	UPDATE `seller_page_info` SET `postingId`=#{postingId}, `itemId`=#{itemId}, `price`=#{price},
 		`delivery_charge`=#{deliveryCharge}, `site_url`=#{siteUrl}, `logo_url`=#{logoUrl}
+		WHERE `id`=#{id}
 </update>
 <delete id="delete" parameterType="int">
 	DELETE FROM `seller_page_info` WHERE `id`=#{id}

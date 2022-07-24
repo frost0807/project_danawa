@@ -39,7 +39,7 @@
 	<c:if test="${logIn.type==1}">
 		<div class="row">
 			<div class="col">
-				<div class="btn btn-primary" onclick="location.href='/posting/insert'">추가하기</div>
+				<div class="btn btn-primary" onclick="location.href='/sellerPageInfo/insert'">추가하기</div>
 			</div>
 		</div>
 	</c:if>

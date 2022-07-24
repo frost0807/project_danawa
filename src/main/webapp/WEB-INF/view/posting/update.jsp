@@ -13,6 +13,7 @@
 <div class="container-fluid">
 	<div class="row mt-5">
 		<div class="offset-md-4 col-md-4">
+			<h4 class="text-center mb-5">상품게시물 수정 페이지</h4>
 			<form action="/posting/insert" method="post" enctype="multipart/form-data">
 				<div class="row mb-4">
 					<div class="col-md-2">

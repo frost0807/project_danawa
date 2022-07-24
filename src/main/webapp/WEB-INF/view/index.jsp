@@ -9,12 +9,14 @@
 <title>Danawa 메인 페이지</title>
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
-	<div class="container">
-		<div class="row mt-4">
-			<jsp:include page="categoryNav.jsp" />
-			<div class="col-md-9">화면 출력</div>
+<jsp:include page="nav.jsp" />
+<div class="container">
+	<div class="row mt-4">
+		<jsp:include page="categoryNav.jsp" />
+		<div class="col-md-9">
+			<jsp:include page="posting/printList.jsp">
 		</div>
 	</div>
+</div>
 </body>
 </html>
